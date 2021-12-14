@@ -92,7 +92,16 @@ extension Double
         let pw = 1 - Int(d)
         let magnitude = pow(10.0, Double(pw))
         let shifted = (self * magnitude).rounded()
-        return (shifted / magnitude).rounded()
+        var finalValue = shifted / magnitude
+        
+        if finalValue > 10000 {
+            finalValue = finalValue.rounded()
+        } else {
+            var checkValue = finalValue * 1000000
+            checkValue = checkValue.rounded()
+            finalValue = checkValue / 1000000
+        }
+        return finalValue
     }
 
     var decimalPlaces: Int
